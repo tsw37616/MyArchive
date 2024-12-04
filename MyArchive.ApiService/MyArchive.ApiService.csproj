@@ -16,8 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Images\" />
-    <Folder Include="Endpoints\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
