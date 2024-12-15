@@ -1,6 +1,6 @@
 namespace MyArchive.Web;
 
-public class WeatherApiClient(HttpClient httpClient)
+public class WebApiClient(HttpClient httpClient)
 {
     public async Task<WeatherForecast[]> GetWeatherAsync(int maxItems = 10, CancellationToken cancellationToken = default)
     {
@@ -21,6 +21,17 @@ public class WeatherApiClient(HttpClient httpClient)
 
         return forecasts?.ToArray() ?? [];
     }
+
+    public async Task<string> GetImageDataAscync()
+    {
+        var imageBytes = await httpClient.GetByteArrayAsync("/api/image/1.jpg");
+        var imageData=Convert.ToBase64String(imageBytes);
+        return imageData;
+
+    }
+
+
+    
 }
 
 public record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)

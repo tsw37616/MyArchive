@@ -1,0 +1,14 @@
+﻿@page "/show-image"
+@inject WebApiClient imageApi
+<h3>ShowImage</h3>
+@if(imageData !=null){
+    <img src="data:image/jpeg;base64,@imageData" alt="Fetched Image" />
+}
+
+@code {
+    private string? imageData;
+    protected override async Task OnInitializedAsync()
+    {
+        imageData = await imageApi.GetImageDataAscync();
+    }
+}
