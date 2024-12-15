@@ -22,11 +22,11 @@ public class WebApiClient(HttpClient httpClient)
         return forecasts?.ToArray() ?? [];
     }
 
-    public async Task<string> GetImageDataAsync()
+    public async Task<string> GetImageDataAsync(string url)
     {
         try
         {
-            var response = await httpClient.GetAsync("/api/image/1.jpg");
+            var response = await httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
             var imageBytes = await response.Content.ReadAsByteArrayAsync();

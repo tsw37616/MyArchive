@@ -11,6 +11,6 @@
     private string? imageData;
     protected override async Task OnInitializedAsync()
     {
-        imageData = await imageApi.GetImageDataAsync();
+        imageData = await imageApi.GetImageDataAsync("api/image/4.jpg");
     }
 }
