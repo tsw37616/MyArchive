@@ -11,7 +11,7 @@
 
         public byte[]? GetImageBytes(string imageName)
         {
-            var filePath=Path.Combine(_imagePath, imageName);
+            var filePath = Path.Combine(_imagePath, imageName);
             if (File.Exists(filePath))
             {
                 return File.ReadAllBytes(filePath);
@@ -19,14 +19,15 @@
             return null;
         }
 
-        public string GetMineType(string imageName) {
+        public string GetMineType(string imageName)
+        {
             var extension = Path.GetExtension(imageName).ToLower();
             return extension switch
             {
                 ".jpg" or ".jpeg" => "image/jpeg",
-                "png" => "image/png",
-                _=>"application/octet-stream"
+                ".png" => "image/png",
+                _ => "application/octet-stream"
             };
-            }
+        }
     }
 }

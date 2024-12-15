@@ -22,16 +22,36 @@ public class WebApiClient(HttpClient httpClient)
         return forecasts?.ToArray() ?? [];
     }
 
-    public async Task<string> GetImageDataAscync()
+    public async Task<string> GetImageDataAsync()
     {
-        var imageBytes = await httpClient.GetByteArrayAsync("/api/image/1.jpg");
-        var imageData=Convert.ToBase64String(imageBytes);
-        return imageData;
+        try
+        {
+            var response = await httpClient.GetAsync("/api/image/1.jpg");
+            response.EnsureSuccessStatusCode();
 
+            var imageBytes = await response.Content.ReadAsByteArrayAsync();
+            var imageData = Convert.ToBase64String(imageBytes);
+            return imageData;
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Request error: {ex.Message}");
+            Console.WriteLine($"Inner exception: {ex.InnerException?.Message}");
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Unexpected error: {ex.Message}");
+            return null;
+        }
     }
 
 
-    
+
+
+
+
+
 }
 
 public record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)

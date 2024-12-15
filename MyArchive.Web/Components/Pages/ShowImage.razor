@@ -1,4 +1,6 @@
 ﻿@page "/show-image"
+@attribute [StreamRendering(true)]
+@attribute [OutputCache(Duration = 5)]
 @inject WebApiClient imageApi
 <h3>ShowImage</h3>
 @if(imageData !=null){
@@ -9,6 +11,6 @@
     private string? imageData;
     protected override async Task OnInitializedAsync()
     {
-        imageData = await imageApi.GetImageDataAscync();
+        imageData = await imageApi.GetImageDataAsync();
     }
 }
