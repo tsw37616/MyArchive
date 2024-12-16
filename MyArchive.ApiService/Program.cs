@@ -1,3 +1,4 @@
+using Microsoft.Extensions.FileProviders;
 using MyArchive.ApiService.Endpoints;
 using MyArchive.ApiService.Services;
 using Scalar.AspNetCore;
@@ -29,6 +30,12 @@ if (app.Environment.IsDevelopment())
 
 
 app.MapDefaultEndpoints();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "images")),
+    RequestPath="/image"
+});
 
 app.MapImageEndpoints();
 
