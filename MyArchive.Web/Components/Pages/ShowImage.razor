@@ -6,11 +6,14 @@
 @if(imageData !=null){
     <img src="data:image/jpeg;base64,@imageData" alt="Fetched Image" />
 }
+else{
+    <p>Image Not Found</p>
+}
 
 @code {
     private string? imageData;
     protected override async Task OnInitializedAsync()
     {
-        imageData = await imageApi.GetImageDataAsync("api/image/4.jpg");
+        imageData = await imageApi.GetImageDataAsync("image/4.jpg");
     }
 }
