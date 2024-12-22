@@ -1,14 +1,19 @@
 namespace MyArchive.Web;
 
-public class WebApiClient(HttpClient httpClient)
+public class WebApiClient
 {
+    private readonly HttpClient _httpClient;
 
+    public WebApiClient(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+    }
 
     public async Task<string> GetImageDataAsync(string url)
     {
         try
         {
-            var response = await httpClient.GetAsync(url);
+            var response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
             var imageBytes = await response.Content.ReadAsByteArrayAsync();
@@ -27,12 +32,5 @@ public class WebApiClient(HttpClient httpClient)
             return null;
         }
     }
-
-
-
-
-
-
-
 }
 

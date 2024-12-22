@@ -1,11 +1,33 @@
 ﻿@page "/"
-
+@inject HttpClient web
 <PageTitle>Home</PageTitle>
 
 @if(_trails==null){
     <p>Loading trails..</p>
 }
+else{
+    <div class="grid">
+        @foreach (var trail in _trails)
+        {
+            <div class="col-md-4">
+                <p>@trail.Name</p>
+            </div>
+        }
+    </div>
+}
 
 @code{
     private IEnumerable<Trail>? _trails;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _trails = await web.GetFromJsonAsync<IEnumerable<Trail>>("https://localhost:7094/trails/trail-data.json");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
 }

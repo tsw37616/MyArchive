@@ -1,6 +1,6 @@
 /* 导航栏样式 */
 .navbar {
-    background-color: #343a40; /* 深色背景 */
+    background-color: paleturquoise; /* 深色背景 */
     padding: 10px 20px; /* 内边距 */
     display: flex;
     align-items: center;
@@ -24,6 +24,6 @@
         }
 
 .test {
-    background-color: #343a40;
+    
     color: blueviolet
 }

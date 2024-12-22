@@ -1,0 +1,12 @@
+﻿[
+    {
+        "id": 1,
+        "name": "Trail 1",
+        "location": "Location 1"
+    },
+    {
+        "id": 2,
+        "name": "Trail 2",
+        "location": "Location 2"
+    }
+]
