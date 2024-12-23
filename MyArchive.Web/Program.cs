@@ -1,3 +1,4 @@
+using Microsoft.FluentUI.AspNetCore.Components;
 using MyArchive.Web;
 using MyArchive.Web.Components;
 
@@ -11,6 +12,9 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddOutputCache();
+
+//add FluentUI components
+builder.Services.AddFluentUIComponents();
 
 builder.Services.AddHttpClient<WebApiClient>(client =>
     {
