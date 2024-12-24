@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject HttpClient web
+@using MyArchive.Web.Components.Parts
 <PageTitle>Home</PageTitle>
 
 @if(_trails==null){
@@ -16,6 +17,7 @@ else{
     </div>
 }
 
+<ShipGril/>
 
 @code{
     private IEnumerable<Trail>? _trails;
