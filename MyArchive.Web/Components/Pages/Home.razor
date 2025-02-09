@@ -1,36 +1,33 @@
 ﻿@page "/"
-@inject HttpClient web
-@using MyArchive.Web.Components.Parts
+@inject HttpClient http
+
 <PageTitle>Home</PageTitle>
 
-@if(_trails==null){
-    <p>Loading trails..</p>
+
+@if(_ships==null){
+        <p>Loading...</p>
 }
 else{
-    <div class="grid">
-        @foreach (var trail in _trails)
-        {
-            <div class="col-md-4">
-                <p>@trail.Name</p>
-            </div>
-        }
+    <div class="row">
+      <p>@_ships.ElementAt(20).Name</p>
+
+      <ShipGril _ship =@_ships.ElementAt(20) />
+
+     
     </div>
 }
 
-<ShipGril/>
-
 @code{
-    private IEnumerable<Trail>? _trails;
 
+
+   private IEnumerable<Ship>? _ships;
     protected override async Task OnInitializedAsync()
     {
-        try
-        {
-            _trails = await web.GetFromJsonAsync<IEnumerable<Trail>>("https://localhost:7094/trails/trail-data.json");
+        try {
+            _ships = await http.GetFromJsonAsync<IEnumerable<Ship>>("https://localhost:7094/trails/ship.json");
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
+        catch(Exception ex){
+            Console.WriteLine(ex);
         }
     }
 }

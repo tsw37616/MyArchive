@@ -1,13 +1,16 @@
-﻿<FluentPersona Name=@Name
+﻿<FluentPersona Name=@_ship.Name
 Status="PresenceStatus.Available"
 StatusSize="PresenceBadgeSize.Small"
 StatusTitle="He is available"
-Image=@Image
+Image=@_ship.Avatar
 ImageSize="50px">
 </FluentPersona>
 
 @code{
-    private string? Name { get; set; } = "KMS Bismarck";
-    private string? Image { get; set; } = "https://patchwiki.biligame.com/images/blhx/b/bc/kpg4ewdkf0wq0poxktetujr419l5d24.jpg";
+    [Parameter]
+    public Ship? _ship { get; set; }
+
+        
+  
 
 }
